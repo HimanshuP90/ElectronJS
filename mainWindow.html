@@ -3,14 +3,29 @@
 <head>
   <title>ShoppingList</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
+
 </head>
 <body>
   <nav>
     <div class="nav-wrapper">
-      <a class="brand-logo center">Shopping List</a>   
+      <a class="brand-logo center">Shopping List</a>
     </div>
   </nav>
-  <ul></ul>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="./assets/icon.png" alt="my icon" class="img-fluid">
+      </div>
+    </div>
+  </div>
+      <h4>Details of Pouch  and Electron </h4>
+    <ul>
+      <li>Node.js <script>document.write(process.version)</script></li>
+      <li>Electron <script>document.write(process.versions.electron)</script></li>
+      <li>PouchDB <script>document.write(PouchDB.version)</script></li>
+    </ul>
+    <ul></ul>
 
   <script>
     const electron = require('electron');
@@ -36,5 +51,6 @@
       }
     }
   </script>
+   <script src="script.js"></script>
 </body>
 </html>
