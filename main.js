@@ -36,8 +36,8 @@ app.on('ready', function(){
 // Handle add item window
 function createAddWindow(){
   addWindow = new BrowserWindow({
-    width: 300,
-    height:200,
+    width: 900,
+    height:600,
     title:'Add Shopping List Item'
   });
   addWindow.loadURL(url.format({
@@ -52,11 +52,20 @@ function createAddWindow(){
   });
 }
 
-// Catch item:add
-ipcMain.on('item:add', function(e, item){
-  mainWindow.webContents.send('item:add', item);
+// Catch item:addStudent
+ipcMain.on('item:addStudent', function(e, item){
+  mainWindow.webContents.send('item:addStudent', item);
+  console.log("MyItem: ", item);
   addWindow.close(); 
 });
+
+// // Catch item:add
+// ipcMain.on('item:add', function(e, item){
+//   mainWindow.webContents.send('item:add', item);
+//   console.log("MyItem: ", item);
+//   addWindow.close(); 
+// });
+
 
 // Create menu template
 const mainMenuTemplate =  [

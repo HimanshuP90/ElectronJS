@@ -2,28 +2,96 @@
 <html lang="en">
 <head>
   <title>Add Shopping Item</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 <body>
+<style>
+    header{
+      background-color: #ee6e73;
+      text-align: center;
+      color: white;
+      padding-top: 12px;
+      margin: 0 auto;
+      min-height: 60px;
+    }
+
+    form{
+      padding: 5px;
+    }
+  </style>
+  <header>
+    <h3>Student Information System</h3>
+  </header>
   <div class="container">
     <form>
-      <div>
-        <label>Enter Item</label>
-        <input type="text" id="item" autofocus>
-      </div>
-      <button class="waves-effect waves-light btn" type="submit">Add Item</button>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>First Name</label>
+            <input type="text" class="form-control" id="inputFirstName" placeholder="First Name">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Last Name</label>
+            <input type="text" class="form-control" id="inputLastName" placeholder="Last Name">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main Street">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>City</label>
+            <input type="text" class="form-control" id="inputCity" >
+          </div>
+          <div class="form-group col-md-4">
+            <label>State</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+                <option value="delhi">Delhi</option>
+                <option value="bengaluru">Bengaluru</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="noida" selected>Noida</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label>Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox"> Check me out
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Submit</button>
     </form>
   </div>
-
   <script>
     const electron = require('electron');
     const {ipcRenderer} = electron;
     document.querySelector('form').addEventListener('submit', submitForm);
     function submitForm(e){
       e.preventDefault();
-      const item = document.querySelector('#item').value;
-      console.log(ipcRenderer);
-      ipcRenderer.send('item:add', item);
+      const FirstName = document.querySelector('#inputFirstName').value;
+      const LastName = document.querySelector('#inputLastName').value;
+      const Email = document.querySelector('#inputEmail').value;
+      const Password = document.querySelector('#inputPassword').value;
+      const Address = document.querySelector('#inputAddress').value;
+      const City = document.querySelector('#inputCity').value;
+      const State = document.querySelector('#inputState').value;
+      const Zip = document.querySelector('#inputZip').value;
+
+      ipcRenderer.send('item:addStudent', {FirstName, LastName, Email, Password, Address, City, State, Zip});
     }
   </script>
 </body>
